@@ -83,24 +83,23 @@ export default function Home() {
   }
 
   return (
-    <div className="p-8 bg-gray-100 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <div className="p-4 md:p-8 bg-gray-100 dark:bg-gray-900 min-h-screen transition-colors duration-300">
       
       {/* Header with shifted buttons and Dark Mode toggle */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col md:flex-row items-center justify-between mb-6 md:mb-8">
         {/* Title */}
-        <h1 className="text-4xl font-extrabold text-gray-800 dark:text-gray-100">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 dark:text-gray-100 mb-4 md:mb-0">
           HR DASHBOARD
         </h1>
 
-        {/* Buttons section, shifted right with ml-6 */}
-        <div className="flex items-center space-x-4 ml-6">
+        {/* Buttons section, stacked on mobile */}
+        <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
           
-          {/* Bookmarks Button with red color */}
+          {/* Bookmarks Button */}
           <Link
             href="/bookmarks"
-            className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold flex items-center space-x-2 transition-colors duration-200"
+            className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold flex items-center space-x-2 transition-colors duration-200 cursor-pointer"
           >
-            {/* Optional icon */}
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
               <path d="M5 3a2 2 0 00-2 2v12l7-3 7 3V5a2 2 0 00-2-2H5z" />
             </svg>
@@ -110,21 +109,19 @@ export default function Home() {
           {/* Analytics Button */}
           <Link
             href="/analytics"
-            className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold flex items-center space-x-2 transition-colors duration-200"
+            className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold flex items-center space-x-2 transition-colors duration-200 cursor-pointer"
           >
-            {/* Optional icon */}
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M3 3v18h18V3H3zm2 2h14v2H5V5zm0 4h14v2H5V9zm0 4h14v2H5v-2zm0 4h14v2H5v-2z" />
             </svg>
             <span>Analytics</span>
           </Link>
 
-          {/* Dark Mode Toggle Button */}
+          {/* Dark Mode Toggle */}
           <button
             onClick={toggleTheme}
-            className="px-4 py-2 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-lg font-semibold flex items-center space-x-2 transition-colors duration-200"
+            className="px-4 py-2 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-lg font-semibold flex items-center space-x-2 transition-colors duration-200 cursor-pointer"
           >
-            {/* Icon for dark/light mode */}
             {isDarkTheme ? (
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 0010.586 10.586z" />
@@ -140,9 +137,10 @@ export default function Home() {
       </div>
 
       {/* Search */}
-      <div className="relative mb-8 max-w-2xl mx-auto">
+      <div className="relative mb-6 max-w-2xl mx-auto">
         <input
-          type="text"
+          type="search" // better for mobile keyboards
+          autoComplete="off"
           placeholder="Search by Name"
           className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 shadow-sm transition-shadow"
           onChange={onChange}
@@ -162,13 +160,13 @@ export default function Home() {
         </div>
       </div>
 
-      {/* User Cards Grid */}
+      {/* User Cards Grid - responsive layout */}
       {filteredUsers.length === 0 ? (
         <div className="text-center text-gray-500 my-8 text-lg font-semibold">
           No results found.
         </div>
       ) : (
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {filteredUsers.map((user) => (
             <UserCard key={user.id} user={user} />
           ))}
@@ -178,7 +176,7 @@ export default function Home() {
   );
 }
 
-// Debounce utility
+// Debounce utility remains the same
 function debounce(func, delay) {
   let timeoutId;
   return (...args) => {
@@ -186,4 +184,3 @@ function debounce(func, delay) {
     timeoutId = setTimeout(() => func(...args), delay);
   };
 }
-
