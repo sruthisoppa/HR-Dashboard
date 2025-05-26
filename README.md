@@ -22,8 +22,27 @@ A modern, responsive HR Dashboard built with **Next.js 15**, **React 19**, **Tai
 - **Charts:** Chart.js, react-chartjs-2  
 - **Hosting:** Vercel  
 
----
 
+---
+## 🖼 Preview 
+
+<p align="center">
+  <img src="https://ik.imagekit.io/jxtjn4hpqj/Screenshot%202025-05-26%20123221.png?updatedAt=1748243097448" alt="Start Page" width="300"/>
+  &nbsp;&nbsp;
+  <img src="https://ik.imagekit.io/jxtjn4hpqj/Screenshot%202025-05-26%20124720.png?updatedAt=1748243950231" alt="Login" width="300"/>
+  &nbsp;&nbsp;
+  <img src="https://ik.imagekit.io/jxtjn4hpqj/Screenshot%202025-05-26%20123706.png?updatedAt=1748243266452" alt="Dashboard" width="300"/>
+  &nbsp;&nbsp;
+  <img src="https://ik.imagekit.io/jxtjn4hpqj/Screenshot%202025-05-26%20124747.png?updatedAt=1748243949086" alt="Employee" width="300"/>
+  &nbsp;&nbsp;
+  <img src="https://ik.imagekit.io/jxtjn4hpqj/Screenshot%202025-05-26%20124804.png?updatedAt=1748243949502" alt="Bookmarks" width="300"/>
+  &nbsp;&nbsp;
+  <img src="https://ik.imagekit.io/jxtjn4hpqj/Screenshot%202025-05-26%20124755.png?updatedAt=1748243949006" alt="Analytics" width="300"/>
+    &nbsp;&nbsp;
+  <img src="https://ik.imagekit.io/jxtjn4hpqj/Screenshot%202025-05-26%20124814.png?updatedAt=1748243949345" alt="Dark Mode" width="300"/>
+</p>
+
+---
 ## 💻 Getting Started
 
 This is a **Next.js project bootstrapped with `create-next-app`**.
@@ -180,14 +199,6 @@ npm run dev
 * [Learn Next.js](https://nextjs.org/learn) – Interactive Next.js tutorial
 * [Next.js GitHub](https://github.com/vercel/next.js) – Contribute or give feedback
 
----
-## 🖼 Preview 
-
-<p align="center">
-  <img src="https://ik.imagekit.io/jxtjn4hpqj/Screenshot%202025-05-26%20123221.png?updatedAt=1748243097448" alt="Start Page" width="300"/>
-  &nbsp;&nbsp;
-  <img src="https://ik.imagekit.io/jxtjn4hpqj/Screenshot%202025-05-26%20123706.png?updatedAt=1748243266452" alt="Dashboard" width="300"/>
-</p>
 
 ## 📦 Deploy on Vercel
 
