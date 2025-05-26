@@ -3,6 +3,9 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+import Cookies from 'js-cookie';
+
+
 export default function LoginPage() {
   const router = useRouter();
   const [error, setError] = useState('');
@@ -14,32 +17,33 @@ export default function LoginPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
 
-    // Retrieve users from localStorage
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
+const handleLogin = (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setError('');
 
-    // Find user matching username or email
-    const user = users.find(
-      (u) =>
-        u.username === formData.username || u.email === formData.username
-    );
+  // Retrieve users from localStorage
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
 
-    if (user && user.password === formData.password) {
-      // Successful login
-      setLoading(false);
-      // Save logged-in user info if needed
-      // For example: localStorage.setItem('currentUser', JSON.stringify(user));
-      // Redirect to dashboard
-      router.push('/hrDashboard');
-    } else {
-      setLoading(false);
-      setError('Invalid username/email or password');
-    }
-  };
+  // Find user matching username or email
+  const user = users.find(
+    (u) =>
+      u.username === formData.username || u.email === formData.username
+  );
+
+  if (user && user.password === formData.password) {
+    // Successful login
+    setLoading(false);
+    // Set cookie with js-cookie
+    Cookies.set('authToken', 'abc123', { expires: 1, path: '/' });
+    // Redirect to dashboard
+    router.push('/hrDashboard');
+  } else {
+    setLoading(false);
+    setError('Invalid username/email or password');
+  }
+};
 
   return (
     <div className="min-h-screen bg-cover bg-center relative" style={{
