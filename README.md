@@ -1,5 +1,4 @@
 
-````markdown
 #  HR Dashboard
 
 A modern, responsive HR Dashboard built with **Next.js 15**, **React 19**, **Tailwind CSS**, **TypeScript**, and **Chart.js**. It features **Google OAuth authentication** via **NextAuth.js**, secure session handling, and interactive data visualizations.
