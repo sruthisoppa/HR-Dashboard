@@ -54,7 +54,7 @@ const handleLogin = (e) => {
         <div className="max-w-lg w-full bg-white dark:bg-gray-900 rounded-3xl shadow-xl p-8 space-y-6 backdrop-filter backdrop-blur-lg bg-opacity-80">
           <h2 className="text-4xl font-extrabold text-center text-gray-900 dark:text-gray-100 mb-4">Welcome Back</h2>
           <p className="text-center text-gray-600 dark:text-gray-300 mb-8">Sign in to your account to continue</p>
-           <p className="text-center text-gray-600 dark:text-gray-300 mb-8">For Sample Purpose Use Username : admin, Password : admin123</p>
+           <p className="text-center text-gray-600 dark:text-gray-300 mb-8">If you haven't registered yet make sure you register.</p>
           
           {/* Form */}
           <form className="space-y-4" onSubmit={handleLogin}>

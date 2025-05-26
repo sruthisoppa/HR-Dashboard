@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useParams,  useRouter } from 'next/navigation';
 
+
 // Static list of employees with unique data for each ID
 const employeesData = [
   {
@@ -255,6 +256,10 @@ const getBadgeColor = (rating) => {
 export default function EmployeePage() {
   const { id } = useParams();
   const router = useRouter();
+   const [feedbacks, setFeedbacks] = useState([]);
+const [newReviewer, setNewReviewer] = useState('');
+const [newRating, setNewRating] = useState(0);
+const [newMessage, setNewMessage] = useState('');
 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -267,7 +272,20 @@ export default function EmployeePage() {
     { date: '2023-06-10', rating: 5 },
     { date: '2023-09-05', rating: 3 },
   ];
-
+    useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('feedbacks');
+      if (saved) {
+        setFeedbacks(JSON.parse(saved));
+      }
+    }
+  }, []);
+   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+    }
+  }, [feedbacks]);
+   
   useEffect(() => {
     const foundUser = employeesData.find((emp) => emp.id === id);
     if (foundUser) {
@@ -432,31 +450,135 @@ export default function EmployeePage() {
         </div>
       )}
 
-      {activeTab === 'Feedback' && (
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-shadow hover:shadow-xl mb-6">
-          <h3 className="text-xl font-semibold mb-4 border-b pb-2 border-gray-300 dark:border-gray-700">
-            Feedback
-          </h3>
-          {/* Mock feedbacks */}
-          <div className="space-y-3">
-            <div className="border border-gray-300 dark:border-gray-700 p-3 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition">
-              <div className="flex justify-between items-center mb-2">
-                <span className="font-medium">Manager A</span>
-                <div className="flex items-center">{starRating(5)}</div>
-              </div>
-              <p>Excellent work!</p>
-            </div>
-            <div className="border border-gray-300 dark:border-gray-700 p-3 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition">
-              <div className="flex justify-between items-center mb-2">
-                <span className="font-medium">Peer B</span>
-                <div className="flex items-center">{starRating(4)}</div>
-              </div>
-              <p>Great team player.</p>
-            </div>
-            {/* More feedbacks */}
+     {activeTab === 'Feedback' && (
+  <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-shadow hover:shadow-xl mb-6">
+    <h3 className="text-xl font-semibold mb-4 border-b pb-2 border-gray-300 dark:border-gray-700">
+      Feedback
+    </h3>
+     {/* Feedback Form */}
+    <form
+  onSubmit={(e) => {
+    e.preventDefault();
+    setFeedbacks((prev) => [
+      ...prev,
+      {
+        id: Date.now(),
+        reviewer: newReviewer,
+        rating: newRating,
+        message: newMessage,
+      },
+    ]);
+    setNewReviewer('');
+    setNewRating(0);
+    setNewMessage('');
+  }}
+  className="max-w-xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg space-y-6"
+>
+  <h2 className="text-2xl font-semibold text-center mb-4">Feel Free to Submit Feedback</h2>
+
+  {/* Full Name */}
+  <div className="flex flex-col">
+    <label className="mb-2 font-medium text-gray-700 dark:text-gray-200" htmlFor="fullName">
+      Full Name
+    </label>
+    <input
+      id="fullName"
+      type="text"
+      placeholder="Your Name"
+      value={newReviewer}
+      onChange={(e) => setNewReviewer(e.target.value)}
+      className="border border-gray-300 dark:border-gray-600 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+      required
+    />
+  </div>
+
+  {/* Rating */}
+  <div className="flex flex-col">
+    <label className="mb-2 font-medium text-gray-700 dark:text-gray-200" htmlFor="rating">
+      Rating
+    </label>
+    <select
+      id="rating"
+      value={newRating}
+      onChange={(e) => setNewRating(Number(e.target.value))}
+      className="border border-gray-300 dark:border-gray-600 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+      required
+    >
+      <option value={0}>Select Rating</option>
+      <option value={1}>1 ⭐</option>
+      <option value={2}>2 ⭐</option>
+      <option value={3}>3 ⭐</option>
+      <option value={4}>4 ⭐</option>
+      <option value={5}>5 ⭐</option>
+    </select>
+  </div>
+
+  {/* Feedback Message */}
+  <div className="flex flex-col">
+    <label className="mb-2 font-medium text-gray-700 dark:text-gray-200" htmlFor="feedbackMessage">
+      Feedback
+    </label>
+    <textarea
+      id="feedbackMessage"
+      placeholder="Your feedback"
+      value={newMessage}
+      onChange={(e) => setNewMessage(e.target.value)}
+      className="border border-gray-300 dark:border-gray-600 rounded px-4 py-3 resize-none h-24 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+      required
+    />
+  </div>
+
+  {/* Submit Button */}
+  <div className="text-center">
+    <button
+      type="submit"
+      className="mt-4 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded shadow-lg transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400"
+    >
+      Submit Feedback
+    </button>
+  </div>
+</form>
+
+    {/* Feedback List */}
+    <div className="space-y-3 mb-6">
+        {feedbacks.length === 0 ? (
+      <p className="text-gray-500 mb-4"></p>
+    ) : (
+      feedbacks.map((fb) => (
+        <div
+          key={fb.id}
+          className="border border-gray-300 dark:border-gray-700 p-3 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition mb-3"
+        >
+          <div className="flex justify-between items-center mb-2">
+            <span className="font-medium">{fb.reviewer}</span>
+            <div className="flex items-center">{starRating(fb.rating)}</div>
           </div>
+          <p>{fb.message}</p>
         </div>
-      )}
+      ))
+    )}
+    
+      {/* Existing feedbacks */}
+      <div className="border border-gray-300 dark:border-gray-700 p-3 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+        <div className="flex justify-between items-center mb-2">
+          <span className="font-medium">Manager A</span>
+          <div className="flex items-center">{starRating(5)}</div>
+        </div>
+        <p>Excellent work!</p>
+      </div>
+      <div className="border border-gray-300 dark:border-gray-700 p-3 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+        <div className="flex justify-between items-center mb-2">
+          <span className="font-medium">Peer B</span>
+          <div className="flex items-center">{starRating(4)}</div>
+        </div>
+        <p>Great team player.</p>
+
+      </div>
+    </div>
+
+   
+  </div>
+)}
     </div>
   );
 }
