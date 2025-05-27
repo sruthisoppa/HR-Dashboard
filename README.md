@@ -32,11 +32,11 @@ A modern, responsive HR Dashboard built with **Next.js 15**, **React 19**, **Tai
   &nbsp;&nbsp;
   <img src="https://ik.imagekit.io/jxtjn4hpqj/Screenshot%202025-05-26%20124720.png?updatedAt=1748243950231" alt="Login" width="300"/>
   &nbsp;&nbsp;
-  <img src="https://ik.imagekit.io/jxtjn4hpqj/Screenshot%202025-05-27%20201804.png?updatedAt=1748357420579" alt="Dashboard" width="300"/>
-  &nbsp;&nbsp;
   <img src="https://ik.imagekit.io/jxtjn4hpqj/Screenshot_20250527_202056_Chrome.jpg?updatedAt=1748357609917" alt="Mobile View" width="300"/>
   &nbsp;&nbsp;
   <img src="https://ik.imagekit.io/jxtjn4hpqj/Screenshot_20250527_202027_Chrome.jpg?updatedAt=1748357610058" alt="Profile" width="300"/>
+  &nbsp;&nbsp;
+   <img src="https://ik.imagekit.io/jxtjn4hpqj/Screenshot%202025-05-27%20201804.png?updatedAt=1748357420579" alt="Dashboard" width="300"/>
   &nbsp;&nbsp;
   <img src="https://ik.imagekit.io/jxtjn4hpqj/Screenshot%202025-05-26%20124755.png?updatedAt=1748243949006" alt="Analytics" width="300"/>
     &nbsp;&nbsp;
@@ -180,6 +180,10 @@ npm run dev
 
 - **Custom Utility Functions**  
   Debounce search input for performance optimization.
+  
+- **Custom New Employee**  
+  Form Validation to fill new Employee details and add card.
+
 
 ---
 
