@@ -1,7 +1,8 @@
 
 #  HR Dashboard
 
-A modern, responsive HR Dashboard built with **Next.js 15**, **React 19**, **Tailwind CSS**, **TypeScript**, and **Chart.js**. It features **Google OAuth authentication** via **NextAuth.js**, secure session handling, and interactive data visualizations.
+A modern, responsive HR Dashboard built with **Next.js 15**, **React 19**, **Tailwind CSS**, **TypeScript**, and **Chart.js**. It uses client-side authentication by verifying user credentials and manages session state with js-cookie by setting a simple 'authToken'. The dashboard includes interactive data visualizations for HR analytics.
+
 
 ---
 
@@ -17,7 +18,7 @@ A modern, responsive HR Dashboard built with **Next.js 15**, **React 19**, **Tai
 - **Framework:** Next.js 15  
 - **Language:** TypeScript  
 - **Styling:** Tailwind CSS, PostCSS  
-- **Authentication:** NextAuth.js (Google OAuth)  
+- **Authentication:** 'authToken' session management  
 - **State & Cookies:** js-cookie, cookie  
 - **Charts:** Chart.js, react-chartjs-2  
 - **Hosting:** Vercel  
