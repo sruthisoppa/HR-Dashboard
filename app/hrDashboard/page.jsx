@@ -11,13 +11,26 @@ export default function Home() {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+    const [isDarkTheme, setIsDarkTheme] = useState(false);
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [selectedDepartment, setSelectedDepartment] = useState('All');
 const [ageRange, setAgeRange] = useState([18, 60]);
 
-  // Theme toggle
-  const toggleTheme = () => setIsDarkTheme(prev => !prev);
+ useEffect(() => {
+    const storedTheme = localStorage.getItem('darkMode');
+    if (storedTheme === 'true') {
+      setIsDarkTheme(true);
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    setIsDarkTheme(prev => {
+      const newTheme = !prev;
+      localStorage.setItem('darkMode', newTheme);
+      return newTheme;
+    });
+  };
 
   // Auth check - move to top
   useEffect(() => {
@@ -127,7 +140,7 @@ const [ageRange, setAgeRange] = useState([18, 60]);
   {/* Bookmarks Button */}
   <Link
     href="/bookmarks"
-    className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold flex items-center space-x-2 transition-colors duration-200 cursor-pointer"
+    className="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-lg font-semibold flex items-center space-x-2 transition-colors duration-200 cursor-pointer"
   >
     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
       <path d="M5 3a2 2 0 00-2 2v12l7-3 7 3V5a2 2 0 00-2-2H5z" />
@@ -138,7 +151,7 @@ const [ageRange, setAgeRange] = useState([18, 60]);
   {/* Analytics Button */}
   <Link
     href="/analytics"
-    className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold flex items-center space-x-2 transition-colors duration-200 cursor-pointer"
+    className="px-4 py-2 bg-green-500 hover:bg-green-700 text-white rounded-lg font-semibold flex items-center space-x-2 transition-colors duration-200 cursor-pointer"
   >
     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
       <path d="M3 3v18h18V3H3zm2 2h14v2H5V5zm0 4h14v2H5V9zm0 4h14v2H5v-2zm0 4h14v2H5v-2z" />
@@ -164,7 +177,7 @@ const [ageRange, setAgeRange] = useState([18, 60]);
   >
     {isDarkTheme ? (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 0010.586 10.586z" />
+        <path d="M10 2a8 8 0 00-8 8h2a6 6 0 0112 0h2a8 8 0 00-8-8z" />
       </svg>
     ) : (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -202,7 +215,7 @@ const [ageRange, setAgeRange] = useState([18, 60]);
 <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 mb-6">
   {/* Department */}
   <div>
-    <label className="block mb-1 font-semibold">Department</label>
+    <label className="block mb-1 font-semibold dark:text-white">Department</label>
     <select
       value={selectedDepartment}
       onChange={(e) => setSelectedDepartment(e.target.value)}
@@ -217,7 +230,7 @@ const [ageRange, setAgeRange] = useState([18, 60]);
   </div>
   {/* Age Range */}
   <div>
-    <label className="block mb-1 font-semibold">Age Range</label>
+    <label className="block mb-1 font-semibold dark:text-white">Age Range</label>
     <div className="flex items-center space-x-2">
       <input
         type="number"
@@ -229,7 +242,7 @@ const [ageRange, setAgeRange] = useState([18, 60]);
         }
         className="border rounded px-2 py-1 w-20"
       />
-      <span>-</span>
+      <span className='dark:text-white'>-</span>
       <input
         type="number"
         min={18}

@@ -321,12 +321,12 @@ const [newMessage, setNewMessage] = useState('');
   }
 
   return (
-    <div className="max-w-7xl mx-auto p-6 bg-gray-100 dark:bg-gray-900 min-h-screen space-y-8 transition-colors duration-300 relative">
+    <div className="w-full mx-auto p-6 bg-gray-100 dark:bg-gray-900 min-h-screen space-y-8 transition-colors duration-300 relative ">
 
       {/* Back button at top-left */}
    <button
   onClick={() => router.back()}
-  className="flex items-center px-4 py-2 bg-blue-500 text-white rounded shadow hover:bg-blue-600 transition duration-200 mb-4"
+  className="flex items-center px-4 py-2 bg-gray-300 dark:text-white dark:bg-gray-700 rounded shadow hover:bg-gray-400 dark:hover:bg-gray-600 transition"
 >
   {/* Arrow icon (left arrow) */}
   <svg
@@ -342,10 +342,6 @@ const [newMessage, setNewMessage] = useState('');
 </button>
 
       {/* Profile Card */}
-      {/* ... rest of your content ... */}
-      {/* (rest of your existing code remains unchanged) */}
-
-      {/* Profile Card */}
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 flex flex-col md:flex-row items-center md:items-start gap-6 transition-shadow duration-300 hover:shadow-xl">
         <img
           src={user.avatar}
@@ -353,7 +349,7 @@ const [newMessage, setNewMessage] = useState('');
           className="w-24 h-24 rounded-full object-cover shadow-md"
         />
         <div className="flex-1">
-          <h1 className="text-3xl font-bold mb-2">{`${user.firstName} ${user.lastName}`}</h1>
+          <h1 className="text-3xl font-bold mb-2 dark:text-white">{`${user.firstName} ${user.lastName}`}</h1>
           <p className="text-gray-600 mb-3">{user.email}</p>
           {/* Performance stars and badge */}
           <div className="flex items-center space-x-3 mb-4">
@@ -372,16 +368,16 @@ const [newMessage, setNewMessage] = useState('');
       {/* Profile Details */}
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md transition-shadow hover:shadow-xl">
-          <h2 className="text-xl font-semibold mb-3 border-b pb-2 border-gray-300 dark:border-gray-700">
+          <h2 className="text-xl font-semibold mb-3 border-b pb-2 border-gray-300 dark:text-white">
             Profile Details
           </h2>
-          <p className="mb-2">
+          <p className="mb-2 dark:text-white">
             <strong>Address:</strong> {user.address}
           </p>
-          <p className="mb-2">
+          <p className="mb-2 dark:text-white">
             <strong>Phone:</strong> {user.phone}
           </p>
-          <p>
+          <p className="dark:text-white">
             <strong>Bio:</strong> {user.bio}
           </p>
         </div>
@@ -408,10 +404,10 @@ const [newMessage, setNewMessage] = useState('');
       {/* Content Panels */}
       {activeTab === 'Overview' && (
         <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-shadow hover:shadow-xl mb-6">
-          <h3 className="text-xl font-semibold mb-4 border-b pb-2 border-gray-300 dark:border-gray-700">
+          <h3 className="text-xl font-semibold mb-4 border-b pb-2 border-gray-300 dark:text-white">
             Performance History
           </h3>
-          <ul className="space-y-3">
+          <ul className="space-y-3 dark:text-white">
             {performanceHistory.map((entry, index) => (
               <li key={index} className="flex justify-between items-center">
                 <span className="font-medium">{entry.date}</span>
@@ -423,7 +419,7 @@ const [newMessage, setNewMessage] = useState('');
       )}
 
       {activeTab === 'Projects' && (
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-shadow hover:shadow-xl mb-6">
+        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-shadow hover:shadow-xl mb-6 dark:text-white">
           <h3 className="text-xl font-semibold mb-4 border-b pb-2 border-gray-300 dark:border-gray-700">
             Projects
           </h3>
@@ -451,7 +447,7 @@ const [newMessage, setNewMessage] = useState('');
       )}
 
      {activeTab === 'Feedback' && (
-  <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-shadow hover:shadow-xl mb-6">
+  <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-shadow hover:shadow-xl mb-6 dark:text-white">
     <h3 className="text-xl font-semibold mb-4 border-b pb-2 border-gray-300 dark:border-gray-700">
       Feedback
     </h3>

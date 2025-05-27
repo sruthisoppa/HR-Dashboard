@@ -46,7 +46,7 @@ const BookmarksPage = () => {
       <div className="pt-4 mb-4">
         <button
           onClick={() => router.back()}
-          className="flex items-center px-4 py-2 bg-gray-300 dark:bg-gray-700 rounded shadow hover:bg-gray-400 dark:hover:bg-gray-600 transition"
+          className="flex items-center px-4 py-2 bg-gray-300 dark:text-white dark:bg-gray-700 rounded shadow hover:bg-gray-400 dark:hover:bg-gray-600 transition"
         >
           {/* Left arrow icon */}
           <svg
@@ -82,7 +82,7 @@ const BookmarksPage = () => {
               />
               <div className="flex-1 space-y-2 text-center md:text-left">
                 {/* Name & Email */}
-                <h3 className="text-xl font-semibold">{`${employee.firstName} ${employee.lastName}`}</h3>
+                <h3 className="text-xl font-semibold dark:text-white">{`${employee.firstName} ${employee.lastName}`}</h3>
                 <p className="text-gray-500 dark:text-gray-400">{employee.email}</p>
                 <p className="text-gray-600 dark:text-gray-400">Phone: {employee.phone}</p>
                 {/* Buttons */}

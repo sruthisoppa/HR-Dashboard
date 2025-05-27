@@ -91,11 +91,11 @@ export default function Analytics() {
   const ChartComponent = chartType === 'bar' ? Bar : Line;
 
   return (
-    <div className="p-4 space-y-8">
+    <div className="p-4 space-y-8 bg-white dark:bg-gray-700 dark:text-white">
       {/* Back Button with arrow icon */}
       <button
         onClick={handleBack}
-        className="mb-4 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded flex items-center space-x-2"
+        className="mb-4 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded flex items-center space-x-2 dark:text-black"
       >
         <svg
           className="w-4 h-4"
