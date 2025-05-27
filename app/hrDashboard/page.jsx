@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from 'react';
 import UserCard from '../../components/UserCard';
 import Link from 'next/link';
 import Cookies from 'js-cookie';
+import UserManagement from '../../components/UserManagement'; 
 
 export default function Home() {
   // State variables
@@ -15,6 +16,8 @@ export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [selectedDepartment, setSelectedDepartment] = useState('All');
   const [ageRange, setAgeRange] = useState([18, 60]);
+ 
+
 
   // Load theme preference
   useEffect(() => {
@@ -119,6 +122,9 @@ export default function Home() {
       </div>
     );
   }
+ const handleUserAdd = (user) => {
+  setUsers(prev => [user, ...prev]);
+};
 
   return (
     <div className="relative bg-gray-100 dark:bg-gray-900 min-h-screen transition-colors duration-300 font-sans">
@@ -131,7 +137,7 @@ export default function Home() {
             <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2L4 6v6c0 5.52 4.48 10 10 10s10-4.48 10-10V6l-8-4z" />
             </svg>
-            <h1 className="text-xl font-semibold hidden text-gray-800 dark:text-white md:block">User Dashboard</h1>
+            <h1 className="text-xl font-semibold hidden text-gray-800 dark:text-white md:block">HR Dashboard</h1>
           </div>
 
           {/* Navigation Buttons */}
@@ -265,7 +271,7 @@ export default function Home() {
           </div>
         </div>
         </div>
-
+          
         {/* User Cards Grid */}
         {filteredUsers.length === 0 ? (
           <div className="text-center text-gray-500 my-8 text-lg font-semibold">
@@ -274,12 +280,17 @@ export default function Home() {
         ) : (
           <div className="w-full max-w-8xl mx-auto px-8 py-8">
           <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+             
             {filteredUsers.map((user) => (
               <UserCard key={user.id} user={user} className="hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200" />
-            ))}
+            ))}<UserManagement onUserAdd={handleUserAdd} />
+            
+           
           </div>
+          
           </div>
         )}
+        
       
     </div>
   );
